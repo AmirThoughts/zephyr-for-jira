@@ -1,0 +1,41 @@
+{
+  "name": "codecept-tests",
+  "version": "1.0.0",
+  "description": "###To setup and install all the dependencies npm install",
+  "main": "codecept.conf.js",
+  "scripts": {
+    "test": "codeceptjs run --plugins allure --config=./codecept.conf.js",
+    "test:smoke": "codeceptjs run --verbose --grep \"@smoke\" --plugins allure --config=./codecept.conf.js",
+    "test:sanity": "codeceptjs run --verbose --grep \"@sanity\" --plugins allure --config=./codecept.conf.js",
+    "test:multiple": "codeceptjs run-multiple --all --plugins allure --config=./codecept.conf.js",
+    "start:selenium-standalone": "./node_modules/.bin/selenium-standalone install"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@codeceptjs/configure": "^0.4.1",
+    "@wdio/cli": "^5.0.0",
+    "async-retry": "^1.3.1",
+    "chai": "^4.2.0",
+    "codeceptjs": "^2.4.3",
+    "cucumber": "^6.0.5",
+    "dotenv": "^8.2.0",
+    "exceljs": "^3.8.1",
+    "faker": "^4.1.0",
+    "graphql": "^15.0.0",
+    "graphql-request": "^1.8.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.24.0",
+    "npm": "^6.14.5",
+    "protractor": "^5.4.2",
+    "randomstring": "^1.1.5",
+    "scroll-to-element": "^2.0.3",
+    "soft-assert": "^0.2.0",
+    "wdio": "^4.0.0",
+    "window": "^4.2.7"
+  },
+  "devDependencies": {
+    "@wdio/selenium-standalone-service": "^5.16.10",
+    "mochawesome": "4.1.0"
+  }
+}
