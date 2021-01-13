@@ -50,7 +50,7 @@ echo $jwt
 #JobName="cicd demo"$ (date + "%Y-%m-%d %T")
 jobName="cicd demo"
 jobDescription="cicd using cucumber"
-automation framework="Cucumber"
+automationFramework="Cucumber"
 projectKey="BDD"
 versionName="Unscheduled"
 
@@ -68,8 +68,23 @@ assigneeUser="5a9fc68ec446722b40ac861e"
 
 #results file path
 #for windows path 'result/path=@\"C:/myfile.xml\"'
-#resultpath="@C:\Users\sku\Documents\Personal\zephyr-for-jira\codecept-tests"
+resultpath="@C:\Users\sku\Documents\Personal\zephyr-for-jira\codecept-tests\result.json"
 
-result= "$(cat headers | head -n 1)"
+echo "save and execute the job"
+
+
+curl -o headers -s -v
+-H 'authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb20uc21hcnRiZWFyLmN1Y3VtYmVyIiwiYXVkIjoiY2kiLCJjb250ZXh0Ijp7ImxpdmluZ19kb2NfaWQiOjE1MTl9LCJpYXQiOjE2MTA1MzY2ODV9.T2h1TybKVhoWNDsorWYTCpuY-JIiTU443pAZhYqeTWQ' \
+-H 'content-type: multipart/form-data' \
+-F results_file=@results.json \
+-F language=js
+-XPOST https://c4j.cucumber.io/ci/rest/api/results \
+
+curl -o headers -s -v -H "accessKey: $accessKey" -H "jwt: $jwt" -H "Content-Type: multiple/form-data" -H "Content-Type: application/json" -F "jobName=$jobName"
+-F "jobDescription=$jobDescription" -F "automationFramework=$automationFramework" -F "projectKey=$projectKey" -F "versionName=$versionName" -F "cycleName=$cycleName"
+-F "createNewCycle=$createNewCycle" -F "appendDateTimeInCycleName=$appendDateTimeInCycleName" -F "folderName=$folderName" -F "createNewFolder=$createNewFolder"
+-F "appendDateTimeInFolderName=$appendDateTimeInFolderName" -F "assigneeUser=$assigneeUser" -F "file=$resultpath" -XPOST
+https://prod-vortexapi.zephyr4jiracloud.com/api/v1/automation/job/saveAndExecute
+
+result="$(cat headers | head -n 1)"
 echo $result
-
