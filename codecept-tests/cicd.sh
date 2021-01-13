@@ -48,7 +48,7 @@ echo $jwt
 
 #Job information
 #JobName="cicd demo"$ (date + "%Y-%m-%d %T")
-jobName="cicd demo"
+jobName="ZephyrWithJIRA"
 jobDescription="cicd using cucumber"
 automationFramework="Cucumber"
 projectKey="BDD"
